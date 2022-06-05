@@ -12,4 +12,9 @@ class Curso extends Model
     protected $fillable = [
       'titulo', 'descricao'
     ];
+
+    public function matriculas()
+    {
+        return $this->hasMany(Matricula::class);
+    }
 }

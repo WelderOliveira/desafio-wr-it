@@ -12,4 +12,9 @@ class Aluno extends Model
     protected $fillable = [
         'name','email'
     ];
+
+    public function matriculas()
+    {
+        return $this->hasMany(Matricula::class);
+    }
 }
