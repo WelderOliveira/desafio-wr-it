@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
         $alunos = Aluno::all();
-        return response()->json(['aluno'=>$alunos],200);
+        return response()->json(['alunos'=>$alunos],200);
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|void
+     * @return JsonResponse|void
      */
     public function store(Request $request)
     {
@@ -38,17 +39,28 @@ class AlunoController extends Controller
         }
     }
 
-    public function searchAluno()
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchAluno(Request $request)
     {
-//        if ($search){
-//            $contatos = Aluno::where([
-//                ['nome','like','%'.$search.'%']
-//            ])->get();
+        if ($request->name) {
+            $aluno = Aluno::where([
+                ['name', 'like', '%' . $request->name . '%']
+            ]);
+        }
+        if ($request->email) {
+            $aluno = Aluno::where([
+                ['email', 'like', '%' . $request->email . '%']
+            ]);
+        }
+        return response()->json($aluno->get(),200);
     }
 
     /**
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show($id)
     {
@@ -59,7 +71,7 @@ class AlunoController extends Controller
     /**
      * @param Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse|void
+     * @return JsonResponse|void
      */
     public function update(Request $request, $id)
     {
@@ -75,13 +87,13 @@ class AlunoController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Http\JsonResponse|void
+     * @return JsonResponse|void
      */
     public function destroy($id)
     {
         $aluno = Aluno::findOrFail( $id );
         if( $aluno->delete() ){
-            return response()->json(['aluno'=>$aluno],200);
+            return response()->json(['success'=>"Aluno excluido com Sucesso!"],200);
         }
     }
 }

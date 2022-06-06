@@ -24,6 +24,7 @@ Route::controller(\App\Http\Controllers\AlunoController::class)->group(function 
     Route::post('/alunos', 'store');
     Route::put('/alunos/{id}', 'update');
     Route::delete('/alunos/{id}', 'destroy');
+    Route::get('/search','searchAluno');
 });
 
 Route::controller(\App\Http\Controllers\CursoController::class)->group(function (){

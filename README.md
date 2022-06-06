@@ -70,6 +70,10 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
   ```
     DELETE - http://127.0.0.1:8000/api/alunos/{id}
 
+- [X] Buscar Aluno pelo Nome ou Email
+  ```
+    GET - http://127.0.0.1:8000/api/search?name=NOMEDOALUNO&email=EMAILDOALUNO
+
 ## API Curso
 
 - [X] Cadastrar Curso
