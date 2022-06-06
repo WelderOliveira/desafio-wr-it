@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Matricula;
+use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -58,6 +59,16 @@ class MatriculaController extends Controller
     public function store(Request $request)
     {
         try {
+
+            $result = Matricula::where([
+                'aluno_id' => $request->input('aluno_id'),
+                'curso_id' => $request->input('curso_id')
+            ])->get();
+
+            if (count($result) != 0){
+                return response()->json(["ERROR"=>"Usuário já está matriculado no Curso"]);
+            }
+
             $matricula = new Matricula;
             $matricula->aluno_id = $request->input('aluno_id');
             $matricula->curso_id = $request->input('curso_id');
