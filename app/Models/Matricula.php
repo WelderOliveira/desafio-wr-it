@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
+
     protected $fillable = [
       'aluno_id', 'curso_id'
     ];
@@ -15,16 +16,16 @@ class Matricula extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function alunos()
+    public function Alunos()
     {
-        return $this->belongsTo(Aluno::class);
+        return $this->belongsTo(Aluno::class,'aluno_id','id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function Cursos()
     {
-        return $this->belongsTo(Curso::class);
+        return $this->hasMany(Curso::class,'curso_id','id');
     }
 }

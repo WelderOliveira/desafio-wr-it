@@ -17,4 +17,9 @@ class Curso extends Model
     {
         return $this->hasMany(Matricula::class);
     }
+
+    public function alunos()
+    {
+        return $this->belongsToMany(Aluno::class,'matriculas','curso_id','aluno_id');
+    }
 }

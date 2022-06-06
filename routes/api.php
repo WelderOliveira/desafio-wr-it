@@ -34,3 +34,10 @@ Route::controller(\App\Http\Controllers\CursoController::class)->group(function 
     Route::delete('/cursos/{id}', 'destroy');
 });
 
+Route::controller(\App\Http\Controllers\MatriculaController::class)->group(function (){
+    Route::get('/consultaCurso/{id}','consultaCursosAluno');
+    Route::get('/consultaAlunos/{id}','consultaAlunosCurso');
+    Route::post('/matricula', 'store');
+    Route::put('/matricula/{id}', 'update');
+    Route::delete('/matricula/{id}', 'destroy');
+});

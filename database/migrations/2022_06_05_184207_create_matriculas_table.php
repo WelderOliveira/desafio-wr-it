@@ -14,6 +14,7 @@ class CreateMatriculasTable extends Migration
     public function up()
     {
         Schema::create('matriculas', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('aluno_id')
                 ->constrained()
                 ->onUpdate('cascade')
