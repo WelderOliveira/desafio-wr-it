@@ -10,7 +10,14 @@ class Aluno extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name','email'
+        'name','email','dt_nascimento'
+    ];
+
+    protected $dates = ['dt_nascimento'];
+
+    static $rules=[
+        'name'=>'required',
+        'email'=>'required',
     ];
 
     public function matriculas()

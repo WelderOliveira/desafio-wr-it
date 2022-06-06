@@ -23,9 +23,12 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
         try {
+            request()->validate(Aluno::$rules);
+
             $aluno = new Aluno;
             $aluno->name = $request->input('name');
             $aluno->email = $request->input('email');
+            $aluno->dt_nascimento = $request->input('dt_nascimento');
 
             if( $aluno->save() ){
                 return response()->json(['aluno'=>$aluno],200);
@@ -33,6 +36,14 @@ class AlunoController extends Controller
         }catch (\Exception $exception){
             return response()->json(['error'=>$exception]);
         }
+    }
+
+    public function searchAluno()
+    {
+//        if ($search){
+//            $contatos = Aluno::where([
+//                ['nome','like','%'.$search.'%']
+//            ])->get();
     }
 
     /**
@@ -55,8 +66,9 @@ class AlunoController extends Controller
         $aluno = Aluno::findOrFail( $id );
         $aluno->name = $request->input('name');
         $aluno->email = $request->input('email');
+        $aluno->dt_nascimento = $request->input('dt_nascimento');
 
-        if( $aluno->save() ){
+        if( $aluno->update() ){
             return response()->json(['aluno'=>$aluno],200);
         }
     }
