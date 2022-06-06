@@ -29,7 +29,10 @@ class AlunoController extends Controller
             $aluno = new Aluno;
             $aluno->name = $request->input('name');
             $aluno->email = $request->input('email');
-            $aluno->dt_nascimento = $request->input('dt_nascimento');
+
+            if($request->input('dt_nascimento')){
+                $aluno->dt_nascimento = $request->input('dt_nascimento');
+            }
 
             if( $aluno->save() ){
                 return response()->json(['aluno'=>$aluno],200);
