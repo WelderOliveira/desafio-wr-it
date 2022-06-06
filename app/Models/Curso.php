@@ -13,6 +13,10 @@ class Curso extends Model
       'titulo', 'descricao'
     ];
 
+    static $rules=[
+        'titulo'=>'required',
+    ];
+
     public function matriculas()
     {
         return $this->hasMany(Matricula::class);

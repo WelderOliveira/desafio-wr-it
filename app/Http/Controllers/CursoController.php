@@ -24,6 +24,8 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         try {
+            request()->validate(Curso::$rules);
+            
             $curso = new Curso;
             $curso->titulo = $request->input('titulo');
             $curso->descricao = $request->input('descricao');
@@ -57,7 +59,7 @@ class CursoController extends Controller
         $curso->titulo = $request->input('titulo');
         $curso->descricao = $request->input('descricao');
 
-        if( $curso->save() ){
+        if( $curso->update() ){
             return response()->json(['curso'=>$curso],200);
         }
     }
