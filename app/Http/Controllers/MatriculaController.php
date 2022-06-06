@@ -23,7 +23,7 @@ class MatriculaController extends Controller
         $aluno['qntTurmasRegistrado'] = count($matricula);
 
         foreach ($matricula as $key => $al){
-            $aluno[$key]['cursoAluno'] = Curso::findOrFail($al['curso_id']);
+            $aluno['cursoAluno'][$key] = Curso::findOrFail($al['curso_id']);
         }
 
         return response()->json($aluno,200);
@@ -43,7 +43,7 @@ class MatriculaController extends Controller
         $aluno['qntAlunosMatriculados'] = count($matricula);
 
         foreach ($matricula as $key => $al){
-            $aluno[$key]['alunoCurso'] = Aluno::findOrFail($al['aluno_id']);
+            $aluno['alunoCurso'][$key] = Aluno::findOrFail($al['aluno_id']);
         }
 
         return response()->json($aluno,200);
