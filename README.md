@@ -27,17 +27,36 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 * cd desafio-wr-it
 
-* composer install
-
 * cp .env.example .env
+
+* Atualize as variáveis de ambiente do arquivo .env
+```dosini
+APP_NAME=desafio-wr-it
+APP_URL=http://localhost:8180
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=nome_db
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+Suba os containers do projeto
+```sh
+docker-compose up -d
+```
+
+Acessar o container
+```sh
+docker-compose exec desafio-writ bash
+```
+
+* composer install
 
 * php artisan key:generate
 
-* Adicione as configurações da sua base de dados, no arquivo .env
-
 * php artisan migrate
-
-* php artisan serve
 
 ## API Aluno
 - [X] Cadastrar Aluno
